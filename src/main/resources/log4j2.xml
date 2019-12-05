@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <Configuration status="WARN">
+	<Properties>
+		<Property name="log-path">logs/</Property>
+	</Properties>
+	
+	<Appenders>
+		<RollingFile name="blong-logfile" fileName="${log-path}/blong.log"
+			filePattern="${log-path}/blong-%d{yyyy-MM-dd}-%i.log" >
+			<PatternLayout>
+				<pattern>%d{dd/MM/yyyy HH:mm:ss,SSS}- [%-5level]%c{1}: %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="blong-logger" level="debug" additivity="false">
+			<appender-ref ref="blong-logfile" level="debug"/>
+		</Logger>
+		<Root level="debug" additivity="false">
+			<AppenderRef ref="blong-logfile"/>
+		</Root>
+	</Loggers>
+ </Configuration>
